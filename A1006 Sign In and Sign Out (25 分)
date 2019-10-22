@@ -23,6 +23,7 @@ SC3021234 CS301133
 #include<iostream>
 #include<algorithm>
 #include<string>
+#define N 100001
 using namespace std;
 
 struct record
