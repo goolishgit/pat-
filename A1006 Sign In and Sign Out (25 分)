@@ -1,0 +1,41 @@
+#include<iostream>
+#include<algorithm>
+#include<string>
+using namespace std;
+
+struct record
+{
+	int h, m, s;
+	string str;
+}in[N], out[N];
+
+bool cmp(record a, record b)
+{
+	if (a.h != b.h)
+	{
+		return a.h < b.h;
+	}
+	else if (a.m != b.m)
+	{
+		return a.m < b.m;
+	}
+	else
+	{
+		return a.s < b.s;
+	}
+}
+
+int main()
+{
+	int i, j, k, m, n;
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		cin >> in[i].str;
+		scanf("%d:%d:%d %d:%d:%d", &in[i].h, &in[i].m, &in[i].s, &out[i].h, &out[i].m, &out[i].s);
+		out[i].str = in[i].str;
+	}
+	sort(in, in + n, cmp);
+	sort(out, out + n, cmp);
+	cout << in[0].str << ' ' << out[n - 1].str << endl;
+}
