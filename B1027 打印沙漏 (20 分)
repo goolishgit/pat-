@@ -1,0 +1,36 @@
+#include<iostream>
+#include<cmath>
+
+int main()
+{
+	int i, j, k, m, n;
+	char c;
+	scanf("%d %c", &n, &c);
+	m = (n + 1) / 2;
+	k = sqrt(m);
+	for (i = k; i > 0; --i)
+	{
+		for (j = 0; j < k - i; ++j)
+		{
+			printf(" ");
+		}
+		for (j = 0; j < 2 * i - 1; ++j)
+		{
+			printf("%c", c);
+		}
+		printf("\n");
+	}
+	for (i = 2; i < k + 1; ++i)
+	{
+		for (j = 0; j < k - i; ++j)
+		{
+			printf(" ");
+		}
+		for (j = 0; j < 2 * i - 1; ++j)
+		{
+			printf("%c", c);
+		}
+		printf("\n");
+	}
+	printf("%d", n - 2 * k * k + 1);
+}
