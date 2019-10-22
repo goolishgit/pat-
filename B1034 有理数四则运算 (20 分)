@@ -1,0 +1,153 @@
+//本题要注意题面“其中分子和分母全是整型范围内的整数”，即：分母分子可取多位数，这在字符串处理时要格外小心。
+#include<iostream>
+#include<algorithm>
+#include<string>
+using namespace std;
+
+long long int gcd(long long int a, long long int b)
+{
+	long long int c;
+	if (a < b)
+	{
+		swap(a, b);
+	}
+	while (b != 0)
+	{
+		c = a % b;
+		a = b;
+		b = c;
+	}
+	return a;
+}
+
+string cmp(long long int a1, long long int a2)
+{
+	long long int d1, d2, d11, a11, a22;
+	string s, t, p;
+	bool flag = 1;
+	if (a1 < 0)
+	{
+		flag = 0;
+		a1 = -a1;
+	}
+	d1 = a1 / a2;
+	a1 -= a2 * d1;
+	d2 = gcd(a1, a2);
+	a1 /= d2;
+	a2 /= d2;
+	d11 = d1;
+	while(d1)
+	{
+		s += '0' + d1 % 10;
+		d1 /= 10;
+	}
+	reverse(s.begin(), s.end());
+	d1 = d11;
+	if (d1 && a1)
+	{
+		s += ' ';
+	}
+	a11 = a1;
+	a22 = a2;
+	if(a1)
+	{
+		while (a1)
+		{
+			t += '0' + a1 % 10;
+			a1 /= 10;
+		}
+		reverse(t.begin(), t.end());
+		t += '/';
+		while (a2)
+		{
+			p += '0' + a2 % 10;
+			a2 /= 10;
+		}
+		reverse(p.begin(), p.end());
+	}
+	a1 = a11;
+	a2 = a22;
+	s += t + p;
+	if (a1 == 0 && d1 == 0)
+	{
+		s += '0';
+	}
+	if (flag == 0)
+	{
+		s.insert(0, "(");
+		s.insert(1, "-");
+		s.append(")");
+	}
+	return s;
+}
+
+string jj(long long int a1, long long int a2, long long int b1, long long int b2)
+{
+	long long int gbs, c;
+	string s;
+	gbs = a2 * b2 / gcd(a2, b2);
+	c = (gbs / a2) * a1 + (gbs / b2) * b1;
+	s = cmp(c, gbs);
+	return s;
+}
+
+string cf(long long int a1, long long int a2, long long int b1, long long int b2)
+{
+	string s;
+	long long int a, b, c, d;
+	a = abs(gcd(a1, a2));
+	b = abs(gcd(b1, b2));
+	a1 /= a;
+	a2 /= a;
+	b1 /= b;
+	b2 /= b;
+	c = a1 * b1;
+	d = a2 * b2;
+	s = cmp(c, d);
+	return  s;
+}
+
+string div(long long int a1, long long int a2, long long int b1, long long int b2)
+{
+	string s;
+	long long int a, b, c, d;
+	if (b1 == 0)
+	{
+		s = "Inf";
+	}
+	else
+	{
+		a = abs(gcd(a1, a2));
+		b = abs(gcd(b1, b2));
+		a1 /= a;
+		a2 /= a;
+		b1 /= b;
+		b2 /= b;
+		if (b1 < 0)
+		{
+			b1 = -b1;
+			b2 = -b2;
+		}
+		c = a1 * b2;
+		d = a2 * b1;
+		s = cmp(c, d);
+	}
+	return s;
+}
+
+int main()
+{
+	long long int a1, a2, b1, b2, c1, c2, d1, d2, i, j, k, m, n, temp, tep, gbs, cnt = 0, max = 0;
+	string s1, s2, s3, s4, s5, s6;
+	scanf("%lld/%lld %lld/%lld", &a1, &a2, &b1, &b2);
+	s1 = cmp(a1, a2);
+	s2 = cmp(b1, b2);
+	s3 = jj(a1, a2, b1, b2);
+	s4 = jj(a1, a2, -b1, b2);
+	s5 = cf(a1, a2, b1, b2);
+	s6 = div(a1, a2, b1, b2);
+	cout << s1 << " + " << s2 << " = " << s3 << endl;
+	cout << s1 << " - " << s2 << " = " << s4 << endl;
+	cout << s1 << " * " << s2 << " = " << s5 << endl;
+	cout << s1 << " / " << s2 << " = " << s6 << endl;
+}
