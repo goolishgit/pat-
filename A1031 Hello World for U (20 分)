@@ -1,6 +1,6 @@
+//常规解法
 #include<iostream>
 #include<cstring>
-using namespace std;
 
 int main()
 {
@@ -22,5 +22,37 @@ int main()
 	{
 		printf("%c", s[i]);
 	}
-	system("pause");
+}
+//二维数组解法
+#include<iostream>
+#include<cstring>
+
+int main()
+{
+	int i, j, k, m, n;
+	char s[81], arra[30][30];
+	scanf("%s", s);
+	n = strlen(s);
+	m = (n + 2) / 3;
+	for (i = 0; i < m - 1; ++i)
+	{
+		arra[i][0] = s[i];
+		for (j = 1; j < n - 2 * m + 1; ++j)
+		{
+			arra[i][j] = ' ';
+		}
+		arra[i][n - 2 * m + 1] = s[n - i - 1];
+	}
+	for (j = 0, k = i; j < n - 2 * m + 2; ++j, ++k)
+	{
+		arra[i][j] = s[k];
+	}
+	for (i = 0; i < m; ++i)
+	{
+		for (j = 0; j < n - 2 * m + 2; ++j)
+		{
+			printf("%c", arra[i][j]);
+		}
+		printf("\n");
+	}
 }
