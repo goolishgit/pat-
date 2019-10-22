@@ -1,0 +1,26 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main()
+{
+	int i, j, k, m, n;
+	char s[81], arra[30][30];
+	scanf("%s", s);
+	n = strlen(s);
+	m = (n + 2) / 3;
+	for (i = 0; i < m - 1; ++i)
+	{
+		printf("%c", s[i]);
+		for (j = 0; j < n - 2 * m; ++j)
+		{
+			printf(" ");
+		}
+		printf("%c\n", s[n - i - 1]);
+	}
+	for (j = 0; j < n - 2 * m + 2; ++i, ++j)
+	{
+		printf("%c", s[i]);
+	}
+	system("pause");
+}
