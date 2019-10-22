@@ -1,0 +1,69 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+struct person
+{
+	char name[11], id[11];
+	int score;
+	bool yes = 0;
+};
+
+int main()
+{
+	int i, m, n;
+	char c, name[11], id[11];
+	person f, mm;
+	f.score = 0;
+	mm.score = 100;
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%s %c %s %d", name, &c, id, &m);
+		if (c == 'M')
+		{
+			if (m < mm.score)
+			{
+				strcpy(mm.name, name);
+				strcpy(mm.id, id);
+				mm.yes = 1;
+				mm.score = m;
+			}
+		}
+		else
+		{
+			if (m > f.score)
+			{
+				strcpy(f.name, name);
+				strcpy(f.id, id);
+				f.yes = 1;
+				f.score = m;
+			}
+		}
+	}
+	if (f.yes)
+	{
+		printf("%s %s\n", f.name, f.id);
+	}
+	else
+	{
+		printf("Absent\n");
+	}
+	if (mm.yes)
+	{
+		printf("%s %s\n", mm.name, mm.id);
+	}
+	else
+	{
+		printf("Absent\n");
+	}
+	if (f.yes&&mm.yes)
+	{
+		printf("%d", f.score - mm.score);
+	}
+	else
+	{
+		printf("NA");
+	}
+	system("pause");
+}
