@@ -1,0 +1,19 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int i, j, k, m, n, p, q;
+	string s;
+	scanf("%d %d %d", &m, &n, &p);
+	q = m + n;
+	do
+	{
+		i = q % p;
+		q = q / p;
+		s += '0' + i;
+	} while (q);
+	reverse(s.begin(), s.end());//倒序输出
+	cout << s << endl;
+}
