@@ -1,0 +1,66 @@
+//本题为了方便处理，把火星数字的个位和十位都存在了一个数组中，后面引用时应注意，当数字p大于13时，应有p=(p-13)*13
+#include<iostream>
+#include<string>
+#include<map>
+using namespace std;
+
+int main()
+{
+	int i, j, k, m, n, p, q;
+	map<int, string> mars;
+	map<string, int>earth;
+	string s, s1, s2, s3[25] = { "tret","jan","feb","mar","apr","may","jun","jly","aug","sep","oct","nov","dec", "tam","hel","maa","huh","tou","kes","hei","elo","syy","lok","mer","jou" }, s4;
+	for (i = 0; i < 25; ++i)
+	{
+		mars[i] = s3[i];
+		earth[s3[i]] = i;
+	}//初始化映射集
+	scanf("%d", &n);
+	getchar();
+	for (i = 0; i < n; ++i)
+	{
+		getline(cin, s);
+		m = 0;
+		if (s.length() < 5)//数字或火星数字
+		{
+			if (s[0] >= '0' && s[0] <= '9')//数字
+			{
+				for (j = 0; j < s.length(); ++j)
+				{
+					m = m * 10 + s[j] - '0';//str2int
+				}
+				k = m % 13;//个位数
+				m /= 13;//十位数
+				if (m)
+				{
+					cout << mars[m + 12];
+				}
+				if (m && k)
+				{
+					printf(" ");
+				}
+				if (k || (m == 0 && k == 0))
+				{
+					cout << mars[k];
+				}
+				printf("\n");
+			}
+			else//火星数字
+			{
+				p = earth[s];
+				if (p > 12)
+				{
+					p = (p - 12) * 13;
+				}
+				printf("%d\n", p);
+			}
+		}
+		else//多个火星数字
+		{
+			s4 = s.substr(4, 3);
+			s = s.substr(0, 3);
+			p = (earth[s] - 12) * 13 + earth[s4];
+			printf("%d\n", p);
+		}
+	}
+}
