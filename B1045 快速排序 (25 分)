@@ -1,0 +1,59 @@
+//一定要注意：输出分两行，当第二行为空时要输出换行符，否则测试点2无法通过
+#include<iostream>
+#define N 100001
+using namespace std;
+
+int main()
+{
+	int i, m, n, arra[N], max = -1, min;
+	bool flag[N] = { 0 }, flg = 0;
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%d", &arra[i]);
+	}
+	for (i = 0; i < n; ++i)
+	{
+		if (arra[i] > max)
+		{
+			max = arra[i];
+		}
+		else
+		{
+			flag[i] = 1;
+		}
+	}
+	min = max + 1;
+	for (i = n - 1; i > -1; --i)
+	{
+		if (min > arra[i])
+		{
+			min = arra[i];
+		}
+		else
+		{
+			flag[i] = 1;
+		}
+	}
+	for (i = 0; i < n; ++i)
+	{
+		if (flag[i] == 0)
+		{
+			++m;
+		}
+	}
+	printf("%d\n", m);
+	for (i = 0; i < n; ++i)
+	{
+		if (flag[i] == 0)
+		{
+			if (flg)
+			{
+				printf(" ");
+			}
+			printf("%d", arra[i]);
+			flg = 1;
+		}
+	}
+	printf("\n");
+}
