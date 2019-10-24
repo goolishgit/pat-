@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int b, i = 0, j, m, n, arra[32];
+	bool flag = 1;
+	scanf("%d %d", &n, &b);
+	do
+	{
+		arra[i++] = n % b;
+		n /= b;
+	} while (n);
+	m = i--;
+	for (j = 0; i >= j; ++j, --i)//判断条件改为i!=j将会重复检查数组，不佳
+	{
+		if (arra[i] != arra[j])
+		{
+			printf("No\n");
+			flag = 0;
+			break;
+		}
+	}
+	if (flag)
+	{
+		printf("Yes\n");
+	}
+	printf("%d", arra[m - 1]);
+	for (i = m - 2; i > -1; --i)
+	{
+		printf(" %d", arra[i]);
+	}
+}
