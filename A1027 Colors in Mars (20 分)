@@ -1,0 +1,34 @@
+#include<iostream>
+
+int main()
+{
+	int a, b, i;
+	char d, e;
+	for (i = 0; i < 3; ++i)
+	{
+		scanf("%d", &a);
+		b = a / 13;
+		a = a % 13;
+		if (i == 0)
+		{
+			printf("#");
+		}
+		if (a > 9)
+		{
+			d = a - 10 + 'A';
+		}
+		else
+		{
+			d = a + '0';
+		}
+		if (b > 9)
+		{
+			e = b - 10 + 'A';
+		}
+		else
+		{
+			e = b + '0';
+		}
+		printf("%c%c", e, d);
+	}
+}
