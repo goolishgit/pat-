@@ -1,0 +1,24 @@
+#include<iostream>
+
+int main()
+{
+	int i, j, k, m, n, p, q, r, s, sum1, sum2;
+	bool flag = 1;
+	scanf("%d.%d.%d %d.%d.%d", &m, &n, &p, &q, &r, &s);
+	sum1 = (m * 17 + n) * 29 + p;
+	sum2 = (q * 17 + r) * 29 + s;
+	k = sum2 - sum1;
+	if (k < 0)
+	{
+		flag = 0;
+		k = -k;
+	}
+	i = k / (17 * 29);
+	j = k / 29 % 17;
+	k = k % 29;
+	if (flag == 0)
+	{
+		printf("-");
+	}
+	printf("%d.%d.%d", i, j, k);
+}
