@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int i, b, s, m, n;
+	scanf("%d", &n);
+	b = n / 100;
+	s = n % 100 / 10;
+	m = n % 10;
+	for (i = 0; i < b; ++i)
+	{
+		printf("B");
+	}
+	for (i = 0; i < s; ++i)
+	{
+		printf("S");
+	}
+	for (i = 0; i < m; ++i)
+	{
+		printf("%d", i + 1);
+	}
+}
