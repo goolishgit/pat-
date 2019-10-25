@@ -1,0 +1,21 @@
+//切记晚上不要刷题，阴背着哩
+#include <iostream>
+#include<cstring>
+
+int main()
+{
+	int i, n, digit[10] = { 0 };
+	char m[1001];
+	scanf("%s", m);
+	for (i = 0; i < strlen(m); ++i)
+	{
+		++digit[m[i] - '0'];
+	}
+	for (i = 0; i < 10; ++i)
+	{
+		if (digit[i])
+		{
+			printf("%d:%d\n", i, digit[i]);
+		}
+	}
+}
