@@ -1,0 +1,64 @@
+#include<iostream>
+#include<cmath>
+
+struct stu
+{
+	int a = -1;
+	bool flag = 0;
+};
+
+bool prime(int a)
+{
+	int i, b;
+	for (i = 2; i <= sqrt(a); ++i)
+	{
+		if (a%i == 0)
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int main()
+{
+	int i, j, m, n, temp;
+	stu s[10000];
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%d", &temp);
+		s[temp - 1].a = i + 1;
+	}
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%d", &temp);
+		printf("%04d: ", temp);
+		if (s[temp - 1].a == -1)
+		{
+			printf("Are you kidding?\n");
+			continue;
+		}
+		if (s[temp - 1].flag)
+		{
+			printf("Checked\n");
+		}
+		else
+		{
+			s[temp - 1].flag = 1;
+			if (s[temp - 1].a == 1)
+			{
+				printf("Mystery Award\n");
+			}
+			else if (prime(s[temp - 1].a))
+			{
+				printf("Minion\n");
+			}
+			else
+			{
+				printf("Chocolate\n");
+			}
+		}
+	}
+}
