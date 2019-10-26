@@ -1,0 +1,42 @@
+//这个版本是学会了网上的代码AC了，但是我最开始的版本始终有两个点过不去，不知道为啥
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int gcd(int a, int b)
+{
+	int c;
+	c = a % b;
+	while (c)
+	{
+		a = b;
+		b = c;
+		c = a % b;
+	}
+	return b;
+}
+
+int main()
+{
+	int i, n1, m1, n2, m2, k, gys, gbs;
+	bool flag = 0;
+	scanf("%d/%d %d/%d %d", &n1, &m1, &n2, &m2, &k);
+	if (m2 * n1 - n2 * m1 > 0)
+	{
+		swap(n1, n2);
+		swap(m1, m2);
+	}
+	for (i = 1; i * m1 <= k * n1; ++i);
+	for (; i * m2 < k * n2; ++i)
+	{
+		if (gcd(i, k) == 1)
+		{
+			if (flag)
+			{
+				printf(" ");
+			}
+			printf("%d/%d", i, k);
+			flag = 1;
+		}
+	}
+}
