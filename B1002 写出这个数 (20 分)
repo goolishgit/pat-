@@ -1,0 +1,25 @@
+#include <iostream>
+#include<cstring>
+
+int main()
+{
+	int i, j, n = 0, arr[3];
+	char num[101], han[10][5] = { "ling","yi","er","san","si","wu","liu","qi","ba","jiu" };
+	scanf("%s", num);
+	for (i = 0; i < strlen(num); ++i)
+	{
+		n += num[i] - '0';
+	}
+	i = 0;
+	do
+	{
+		arr[i++] = n % 10;
+		n /= 10;
+	} while (n);
+	printf("%s", han[arr[--i]]);
+	for (--i; i > -1; --i)
+	{
+		printf(" %s", han[arr[i]]);
+	}
+	system("pause");
+}
