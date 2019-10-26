@@ -40,3 +40,48 @@ int main()
 		}
 	}
 }
+//原始版本：
+/*
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int gcd(int a, int b)
+{
+	int c;
+	c = a % b;
+	while (c)
+	{
+		a = b;
+		b = c;
+		c = a % b;
+	}
+	return b;
+}
+
+int main()
+{
+	int i, n1, m1, n2, m2, k, gys, gbs;
+	bool flag = 0;
+	scanf("%d/%d %d/%d %d", &n1, &m1, &n2, &m2, &k);
+	if (m2 * n1 - n2 * m1 > 0)
+	{
+		swap(n1, n2);
+		swap(m1, m2);
+	}
+	gys = gcd(m1, m2);
+	gys = gcd(gys, k);
+	gbs = m1 * m2 * k / gys / gys;
+	for (i = n1 * gbs / m1 + 1; i < n2 * gbs / m2; ++i)
+	{
+		if (gcd(i, gbs) == gbs / k)
+		{
+			if (flag)
+			{
+				printf(" ");
+			}
+			printf("%d/%d", i * k / gbs, k);
+			flag = 1;
+		}
+	}
+}*/
