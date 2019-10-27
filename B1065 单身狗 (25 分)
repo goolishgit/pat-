@@ -1,0 +1,45 @@
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int i, j = 0, m, n, temp, tep, p[100000], q[10000], r[100000] = { 0 };
+	bool flag = 0;
+	scanf("%d", &m);
+	memset(p, -1, sizeof(p));
+	for (i = 0; i < m; ++i)
+	{
+		scanf("%d %d", &temp, &tep);
+		p[temp] = tep;
+		p[tep] = temp;
+	}
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%d", &q[i]);
+		r[q[i]] = 1;
+	}
+	sort(q, q + n);
+	for (i = 0; i < n; ++i)
+	{
+		if (p[q[i]] == -1 || r[p[q[i]]] == 0)
+		{
+			++j;
+		}
+	}
+	printf("%d\n", j);
+	for (i = 0; i < n; ++i)
+	{
+		if (p[q[i]] == -1 || r[p[q[i]]] == 0)
+		{
+			if (flag)
+			{
+				printf(" ");
+			}
+			printf("%05d", q[i]);
+			flag = 1;
+		}
+	}
+}
