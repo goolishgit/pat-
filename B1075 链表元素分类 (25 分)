@@ -1,0 +1,56 @@
+#include<iostream>
+
+struct node
+{
+	int address, data, next;
+}p[100000], q[100000];
+
+int main()
+{
+	int i, j, k = 0, m, n, tem, temp, tep;
+	scanf("%d%d%d", &tem, &temp, &tep);
+	for (i = 0; i < temp; ++i)
+	{
+		scanf("%d", &m);
+		scanf("%d%d", &p[m].data, &p[m].next);
+		p[m].address = m;
+	}
+	for (i = tem; p[i].next != -1; i = p[i].next)
+	{
+		if (p[i].data < 0)
+		{
+			q[k++] = p[i];
+		}
+	}
+	if (p[i].data < 0)
+	{
+		q[k++] = p[i];
+	}
+	for (i = tem; p[i].next != -1; i = p[i].next)
+	{
+		if (p[i].data <= tep && p[i].data >= 0)
+		{
+			q[k++] = p[i];
+		}
+	}
+	if (p[i].data <= tep && p[i].data >= 0)
+	{
+		q[k++] = p[i];
+	}
+	for (i = tem; p[i].next != -1; i = p[i].next)
+	{
+		if (p[i].data > tep)
+		{
+			q[k++] = p[i];
+		}
+	}
+	if (p[i].data > tep)
+	{
+		q[k++] = p[i];
+	}
+	for (i = 0; i < k - 1; ++i)
+	{
+		printf("%05d %d %05d\n", q[i].address, q[i].data, q[i + 1].address);
+	}
+	printf("%05d %d -1", q[i].address, q[i].data);
+}
