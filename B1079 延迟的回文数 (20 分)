@@ -1,0 +1,60 @@
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+
+bool is(char arra[], int n)
+{
+	int i;
+	for (i = 0; i < n; ++i)
+	{
+		if (arra[i] != arra[n - 1 - i])
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int main()
+{
+	int i, j, k, m, n;
+	char arra[1000], arr[1001];
+	scanf("%s", arra);
+	for (j = 0; j < 10; ++j)
+	{
+		n = strlen(arra);
+		if (is(arra, n))
+		{
+			printf("%s is a palindromic number.\n",arra);
+			return 0;
+		}
+		else
+		{
+			for (i = 0; i <= n; ++i)
+			{
+				arr[i] = arra[i];
+			}
+			reverse(arra, arra + n);
+			printf("%s + %s = ", arr, arra);
+			for (i = 0; i < n; ++i)
+			{
+				arra[i] += arr[i] - '0';
+				if (arra[i] > '9')
+				{
+					arra[i] -= 10;
+					arra[i + 1] += 1;
+					if (i == n - 1)
+					{
+						arra[n] += '0';
+						arra[n + 1] = '\0';
+					}
+				}
+			}
+			n = strlen(arra);
+			reverse(arra, arra + n);
+			printf("%s\n", arra);
+		}
+	}
+	printf("Not found in 10 iterations.\n");
+}
