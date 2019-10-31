@@ -1,0 +1,56 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+	int i, j, k, p, m, n;
+	string s;
+	scanf("%d", &n);
+	getchar();
+	for (i = 0; i < n; ++i)
+	{
+		getline(cin, s);
+		if (s.size() < 6)
+		{
+			printf("Your password is tai duan le.\n");
+			continue;
+		}
+		bool num = 0, alpha = 0, point = 0, illegal = 0;
+		for (auto j = s.begin(); j != s.end(); ++j)
+		{
+			if (*j >= '0' && *j <= '9')
+			{
+				num = 1;
+			}
+			else if(*j >= 'a' && *j <= 'z' || *j >= 'A' && *j <= 'Z')
+			{
+				alpha = 1;
+			}
+			else if (*j == '.')
+			{
+				point = 1;
+			}
+			else
+			{
+				illegal = 1;
+			}
+		}
+		if (illegal)
+		{
+			printf("Your password is tai luan le.\n");
+		}
+		else if (alpha && !num)
+		{
+			printf("Your password needs shu zi.\n");
+		}
+		else if (!alpha && num)
+		{
+			printf("Your password needs zi mu.\n");
+		}
+		else
+		{
+			printf("Your password is wan mei.\n");
+		}
+	}
+}
