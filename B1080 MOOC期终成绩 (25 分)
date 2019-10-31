@@ -1,0 +1,87 @@
+#include<iostream>
+#include<algorithm>
+#include<string>
+#include<cmath>
+#include<map>
+using namespace std;
+
+struct a
+{
+	int score1 = -1, score2 = -1, score3 = -1, total;
+	string ss;
+	bool is = 1;
+};
+
+bool cmp(a b, a c)
+{
+	if (b.total != c.total)
+	{
+		return b.total > c.total;
+	}
+	else
+	{
+		return b.ss < c.ss;
+	}
+}
+
+int main()
+{
+	int i, j = 0, k, p, m, n;
+	string s;
+	a arr[10000];
+	map<string, a> arra;
+	scanf("%d%d%d", &p, &m, &n);
+	for (i = 0; i < p; ++i)
+	{
+		cin >> s >> k;
+		arra[s].score1 = k;
+		arra[s].ss = s;
+	}
+	for (i = 0; i < m; ++i)
+	{
+		cin >> s >> k;
+		arra[s].score2 = k;
+		arra[s].ss = s;
+	}
+	for (i = 0; i < n; ++i)
+	{
+		cin >> s >> k;
+		arra[s].score3 = k;
+		arra[s].ss = s;
+	}
+	for (map<string, a>::iterator i = arra.begin(); i != arra.end(); ++i)
+	{
+		if (i->second.score1 < 200)
+		{
+			i->second.is = 0;
+		}
+		else
+		{
+			if (i->second.score2 > i->second.score3)
+			{
+				i->second.total = round(i->second.score2 * 0.4 + i->second.score3 * 0.6);
+			}
+			else
+			{
+				i->second.total = i->second.score3;
+			}
+			if (i->second.total < 60)
+			{
+				i->second.is = 0;
+			}
+		}
+	}
+	for (map<string, a>::iterator i = arra.begin(); i != arra.end(); ++i)
+	{
+		if (i->second.is)
+		{
+			arr[j++] = i->second;
+		}
+	}
+	sort(arr, arr + j, cmp);
+	for (i = 0; i < j; ++i)
+	{
+		cout << arr[i].ss;
+		printf(" %d %d %d %d\n", arr[i].score1, arr[i].score2, arr[i].score3, arr[i].total);
+	}
+}
