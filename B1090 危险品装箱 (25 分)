@@ -1,0 +1,46 @@
+//学习了网上的代码，对于C++特性还不熟练，竟然有map<int, vector<int>>这种操作！
+#include<iostream>
+#include<vector>
+#include<map>
+using namespace std;
+
+int main()
+{
+	map<int, vector<int>> m;
+	int i, j, k, n, p, q, r;
+	scanf("%d %d", &p, &n);
+	for (i = 0; i < p; ++i)
+	{
+		scanf("%d %d", &q, &r);
+		m[q].push_back(r);
+		m[r].push_back(q);
+	}
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%d", &k);
+		vector<int> arra(k);
+		bool flag = 0;
+		int arr[100000] = { 0 };
+		for (j = 0; j < k; ++j)
+		{
+			scanf("%d", &arra[j]);
+			arr[arra[j]] = 1;
+		}
+		for (j = 0; j < k; ++j)
+		{
+			for (p = 0; p < m[arra[j]].size(); ++p)
+			{
+				if (arr[m[arra[j]][p]] == 1)
+				{
+					flag = 1;
+					break;
+				}
+			}
+			if (flag)
+			{
+				break;
+			}
+		}
+		printf("%s\n", flag ? "No" : "Yes");
+	}
+}
