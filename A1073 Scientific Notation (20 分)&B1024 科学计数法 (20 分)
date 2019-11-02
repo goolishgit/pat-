@@ -5,7 +5,7 @@
 int main()
 {
 	int i, j, e;
-	char c, arra[10001] = { 0 };
+	char c, arra[10001] = { 0 };//此处数组大小须为10001，但常规方法只需10000，迷惑
 	scanf("%c%c.%[0-9]E%d", &c, &arra[0], arra + 1, &e);
 	if (c == '-')
 	{
