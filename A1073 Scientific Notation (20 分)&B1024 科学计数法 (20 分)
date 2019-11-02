@@ -1,0 +1,36 @@
+//正则表达式可以极大简化输入，奇技淫巧！
+#include<iostream>
+#include<cstring>
+
+int main()
+{
+	int i, j, e;
+	char c, arra[10001] = { 0 };
+	scanf("%c%c.%[0-9]E%d", &c, &arra[0], arra + 1, &e);
+	if (c == '-')
+	{
+		printf("-");
+	}
+	if (e < 0)
+	{
+		printf("0.");
+		e = -e - 1;
+		while (e)
+		{
+			printf("0");
+			--e;
+		}
+		printf("%s", arra);
+	}
+	else
+	{
+		for (i = 0; i <= e || arra[i] != 0; ++i)
+		{
+			if (i == e + 1)
+			{
+				printf(".");
+			}
+			printf("%c", arra[i] == 0 ? '0' : arra[i]);
+		}
+	}
+}
