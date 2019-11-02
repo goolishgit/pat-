@@ -1,0 +1,27 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+bool cmp(int a, int b)
+{
+	return a > b;
+}
+
+int main()
+{
+	int i, j, m, n, p = 0, q, r, temp, arra[100000];
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%d", &arra[i]);
+	}
+	sort(arra, arra + n, cmp);
+	for (i = 0; i < n; ++i)
+	{
+		if (arra[i] <= i + 1)
+		{
+			break;//之前一直在这里输出，导致无法通过......
+		}
+	}
+	printf("%d", i);
+}
