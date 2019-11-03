@@ -1,0 +1,24 @@
+//今天自己又写了一遍，还不如八个月之前写的.....这是之前的版本
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+ int i=0,j,a,b,sum,summ,num[8]={0};
+ scanf("%d %d",&a,&b);
+ summ=a+b;
+ sum=abs(summ);
+ do
+   {
+    num[i++]=sum%10;
+    sum/=10;
+   }while(sum);
+ if(summ<0)
+   printf("-");
+ for(j=i-1;j>-1;j--)
+    {
+     printf("%d",num[j]);
+     if(j==3||j==6)
+       printf(",");
+	}
+}
