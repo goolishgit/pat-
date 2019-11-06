@@ -1,0 +1,27 @@
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int i, j = 0, k, sum = 0, arr[901];
+	char arra[101] = { 0 }, digit[10][6] = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+	scanf("%s", arra);
+	k = strlen(arra);
+	for (i = 0; i < k; ++i)
+	{
+		sum += arra[i] - '0';
+	}
+	do
+	{
+		arr[j++] = sum % 10;
+		sum /= 10;
+	} while (sum);
+	reverse(arr, arr + j);
+	printf("%s", digit[arr[0]]);
+	for (i = 1; i < j; ++i)
+	{
+		printf(" %s", digit[arr[i]]);
+	}
+}
