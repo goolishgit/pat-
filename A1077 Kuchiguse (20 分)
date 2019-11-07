@@ -1,0 +1,48 @@
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int i, j, n, minlen = 256;
+	char arra[100][257], arr[257];
+	bool flag = 0;
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		getchar();
+		scanf("%[^\n]",arra[i]);
+		if (strlen(arra[i]) < minlen)
+		{
+			minlen = strlen(arra[i]);
+		}
+		reverse(arra[i], arra[i] + strlen(arra[i]));
+	}
+	for (i = 0; i < minlen; ++i)
+	{
+		for (j = 1; j < n; ++j)
+		{
+			if (arra[j][i] != arra[0][i])
+			{
+				flag = 1;
+				break;
+			}
+		}
+		if (flag)
+		{
+			break;
+		}
+	}
+	if (i == 0)
+	{
+		printf("nai");
+	}
+	else
+	{
+		for (j = i - 1; j >= 0; --j)
+		{
+			printf("%c", arra[0][j]);
+		}
+	}
+}
