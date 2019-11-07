@@ -1,0 +1,52 @@
+//我要吹爆我自己！这题之前写了两百多行代码，这次简化到51行！
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main()
+{
+	int i, j, m, n, len;
+	char arra[11], digit[10][5] = { "ling","yi","er","san","si","wu","liu","qi","ba","jiu" }, arr[3][4] = { "","Wan","Yi" }, ar[4][5] = { "","Shi","Bai","Qian" };
+	bool flag = 1, flg = 1;
+	scanf("%s", arra);
+	if (arra[0] == '-')
+	{
+		printf("Fu ");
+		strcpy(arra, arra + 1);
+	}
+	len = strlen(arra);
+	for (i = 0; i < len; ++i)
+	{
+		if (arra[i] != '0')
+		{
+			if (flag == 0)
+			{
+				printf(" ling");
+			}
+			if (i)
+			{
+				printf(" ");
+			}
+			printf("%s", digit[arra[i] - '0']);
+			flag = 1;
+		}
+		else
+		{
+			flag = 0;
+		}
+		if ((len - 1 - i) % 4 && flag)
+		{
+			printf(" %s", ar[(len - 1 - i) % 4]);
+			flg = 1;
+		}
+		else if((len - 1 - i) % 4 == 0 && flg && len - 1 - i)
+		{
+			printf(" %s", arr[(len - 1 - i) / 4]);
+			flg = 0;
+		}
+	}
+	if (!flag && i == 1)//由于上面的处理只考虑了0在中间的情况，因此需要特判输入为0的情况
+	{
+		printf("ling");
+	}
+}
