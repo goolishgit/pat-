@@ -1,0 +1,74 @@
+#include<iostream>
+#include<cstdio>
+#include<vector>
+#include<cstring>
+#include<algorithm>
+#include<string>
+#include<cmath>
+#include<map>
+using namespace std;
+
+struct p
+{
+	int d, c, sum, type;
+	char arra[9];
+}arr[100001];
+
+bool cmp(p a, p b)
+{
+	if (a.type != b.type)
+	{
+		return a.type < b.type;
+	}
+	else if (a.sum != b.sum)
+	{
+		return a.sum > b.sum;
+	}
+	else if (a.d != b.d)
+	{
+		return a.d > b.d;
+	}
+	else
+	{
+		return strcmp(a.arra, b.arra) < 0;
+	}
+}
+
+int main()
+{
+	int i, j, m = -1, n, l, h;
+	p temp;
+	scanf("%d %d %d", &n, &l, &h);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%s %d %d", temp.arra, &temp.d, &temp.c);
+		if (temp.d >= l && temp.c >= l)
+		{
+			arr[++m] = temp;
+			arr[m].sum = arr[m].c + arr[m].d;
+			if (arr[m].d >= h && arr[m].c >= h)//德才兼备
+			{
+				arr[m].type = 1;
+			}
+			else if (arr[m].d >= h)//德胜才
+			{
+				arr[m].type = 2;
+			}
+			else if (arr[m].d >= arr[m].c)//才德双亡，但德胜才
+			{
+				arr[m].type = 3;
+			}
+			else//其他
+			{
+				arr[m].type = 4;
+			}
+		}
+	}
+	sort(arr, arr + m + 1, cmp);
+	printf("%d\n", m + 1);
+	for (i = 0; i < m + 1; ++i)
+	{
+		printf("%s %d %d\n", arr[i].arra, arr[i].d, arr[i].c);
+	}
+	system("pause");
+}
