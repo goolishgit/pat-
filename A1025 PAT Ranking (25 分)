@@ -1,0 +1,69 @@
+#include <iostream>
+#include<cstring>
+#include<algorithm>
+
+struct stu
+{
+	int score, fk, lk, ln;
+	char id[14];
+}s[30001];
+
+bool cmp(stu a, stu b)
+{
+	if (a.score != b.score)
+	{
+		return a.score > b.score;
+	}
+	else
+	{
+		return strcmp(a.id, b.id) < 0;
+	}
+}
+
+using namespace std;
+int main()
+{
+	int i, j, k, m = 0, n, p = 0;
+	scanf("%d", &n);
+	for (i = 0; i < n; ++i)
+	{
+		scanf("%d", &k);
+		for (j = 0; j < k; ++j)
+		{
+			scanf("%s %d", &s[m].id, &s[m].score);
+			s[m++].ln = i + 1;
+		}
+		sort(s + p, s + m, cmp);
+		s[p].lk = 1;
+		for (j = 1; j < k; ++j)
+		{
+			if (s[p + j].score == s[p + j - 1].score)
+			{
+				s[p + j].lk = s[p + j - 1].lk;
+			}
+			else
+			{
+				s[p + j].lk = j + 1;
+			}
+		}
+		p = m;
+	}
+	sort(s, s + m, cmp);
+	s[0].fk = 1;
+	for (i = 1; i < m; ++i)
+	{
+		if (s[i].score == s[i - 1].score)
+		{
+			s[i].fk = s[i - 1].fk;
+		}
+		else
+		{
+			s[i].fk = i + 1;
+		}
+	}
+	printf("%d\n", m);
+	for (i = 0; i < m; ++i)
+	{
+		printf("%s %d %d %d\n", s[i].id, s[i].fk, s[i].ln, s[i].lk);
+	}
+}
