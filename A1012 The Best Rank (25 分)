@@ -1,0 +1,83 @@
+//原版本代码172行，耗时20ms左右；此版本82行，耗时15ms左右。
+//此题难点在于要对结构体进行排序，同时还要便于查询。单独处理后者可使用散列，此时排序会超时；单独处理前者，查询会超时。因此需使用map简化。
+#include<iostream>
+#include<algorithm>
+#include<string>
+#include<map>
+using namespace std;
+int k = -1;
+struct stu
+{
+	int flag, score[4], rank[4], min, corr;
+}arra[2000];
+
+map<string, int> mp;
+
+bool cmp(stu a, stu b)
+{
+	return a.score[k] > b.score[k];
+}
+
+bool cmpp(stu a, stu b)
+{
+	return a.flag < b.flag;
+}
+
+int main()
+{
+	int i, j, m, n, temp;
+	char arr[4] = { 'A','C','M','E' };
+	string str;
+	scanf("%d%d", &n, &m);
+	for (i = 0; i < n; ++i)
+	{
+		cin >> str;
+		mp[str] = i + 1;
+		arra[i].flag = i;
+		scanf("%d%d%d", &arra[i].score[1], &arra[i].score[2], &arra[i].score[3]);
+		arra[i].score[0] = (arra[i].score[1] + arra[i].score[2] + arra[i].score[3]) / 3;
+	}
+	for (i = 0; i < 4; ++i)
+	{
+		++k;
+		sort(arra, arra + n, cmp);
+		arra[0].rank[i] = 1;
+		for (j = 1; j < n; ++j)
+		{
+			if (arra[j].score[i] == arra[j - 1].score[i])
+			{
+				arra[j].rank[i] = arra[j - 1].rank[i];
+			}
+			else
+			{
+				arra[j].rank[i] = j + 1;
+			}
+		}
+	}
+	sort(arra, arra + n, cmpp);
+	for (i = 0; i < n; ++i)
+	{
+		arra[i].min = arra[i].rank[0];
+		arra[i].corr = 0;
+		for (j = 1; j < 4; ++j)
+		{
+			if (arra[i].rank[j] < arra[i].min)
+			{
+				arra[i].min = arra[i].rank[j];
+				arra[i].corr = j;
+			}
+		}
+	}
+	for (i = 0; i < m; ++i)
+	{
+		cin >> str;
+		if (!mp[str])
+		{
+			printf("N/A\n");
+		}
+		else
+		{
+			printf("%d %c\n", arra[mp[str] - 1].min, arr[arra[mp[str] - 1].corr]);
+		}
+	}
+}
