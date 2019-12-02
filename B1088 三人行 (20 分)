@@ -1,0 +1,47 @@
+//发现一个很严重的问题：对于题意的理解非常不透彻，本题一开始就没懂到底要干什么。也许是语文没学好？还是对于编程不够熟练？
+#include <iostream>
+#include<cstring>
+#include<cmath>
+using namespace std;
+
+int cmp(double a, double b)
+{
+	if (a - b > 0)
+	{
+		return 0;
+	}
+	else if (abs(a - b) < 0.000001)
+	{
+		return 1;
+	}
+	else
+	{
+		return 2;
+	}
+}
+
+int main()
+{
+	int i, j, m, x, y;
+	double k1, k2;
+	bool f = 1;
+	char arra[3][5] = { "Cong","Ping","Gai" };
+	scanf("%d%d%d", &m, &x, &y);
+	for (i = 99; i > 9; --i)
+	{
+		j = i / 10 + 10 * (i % 10);
+		k1 = 1.0 * abs(i - j) / x;
+		k2 = 1.0 * j / y;
+		if (abs(k1 - k2) < 0.000001)
+		{
+			printf("%d %s %s %s", i, arra[cmp(i, m)], arra[cmp(j, m)], arra[cmp(k1, m)]);
+			f = 0;
+			break;
+		}
+	}
+	if (f)
+	{
+		printf("No Solution");
+	}
+	system("pause");
+}
