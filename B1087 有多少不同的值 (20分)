@@ -1,0 +1,40 @@
+这个版本应该是我搜了网上的解答，比较好。
+#include<iostream>
+int main()
+{
+	int i, n, sum, max = -1, cnt = 0;
+	scanf("%d", &n);
+	for (i = 1; i <= n; ++i)
+	{
+		sum = i / 2 + i / 3 + i / 5;
+		if (sum > max)由于i逐渐变大，sum的值呈阶梯状上升，因此(sum > max) == (sum != max)
+		{
+			max = sum;
+			++cnt;
+		}
+	}
+	printf("%d", cnt);
+}
+
+这是我后来自己写的，虽然能过，但是内存占用极大，且时间可达100ms+。
+#include<iostream>
+int arra[100000000] = { 0 };这么大数组必须写在开在主函数外，这么大的原因是sum(1~n)<n^2。
+int main()
+{
+	int i, n, sum, cnt = 0;
+	scanf("%d", &n);
+	for (i = 1; i <= n; ++i)
+	{
+		sum = i / 2 + i / 3 + i / 5;
+		arra[sum] = 1;
+	}
+	for (i = 0; i < 100000000; ++i)
+	{
+		if (arra[i])
+		{
+			++cnt;
+		}
+	}
+	printf("%d", cnt);
+	system("pause");
+}
