@@ -1,0 +1,32 @@
+#include<iostream>
+int main()
+{
+	int i, j, max = -1, m, n, temp, arra[1000] = { 0 };
+	bool flag = 0;
+	scanf("%d %d", &n, &m);
+	for (i = 0; i < m; ++i)
+	{
+		for (j = 0; j < n; ++j)
+		{
+			scanf("%d", &temp);
+			arra[j] += temp;
+			if (arra[j] > max)
+			{
+				max = arra[j];
+			}
+		}
+	}
+	printf("%d\n", max);
+	for (j = 0; j < n; ++j)
+	{
+		if (arra[j] == max)
+		{
+			if (flag)
+			{
+				printf(" ");
+			}
+			printf("%d", j + 1);
+			flag = 1;
+		}
+	}
+}
